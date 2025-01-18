@@ -6,11 +6,11 @@
 - [Installation](#installation)
 - [Usage](#usage)
 
-##FEATURES
+## FEATURES
 
 The application allowes the user to write messages with different urgency levels to different text-files (aka journals).
 
-##INSTALLATION
+## INSTALLATION
 
 1. Clone the repository:
 ```bash
@@ -28,16 +28,18 @@ The application allowes the user to write messages with different urgency levels
    make
 ```
 
-##USAGE
+## USAGE
 
 To begin using the application, type one of the following commands to the commands line.
 
-List of available commands
+List of available commands:
+```
 -h          #Provides user with a list of available commands
 -init       #Initialize the journal
 -write      #Write to the journal
 -change     #Change minimum urgency level for incoming messages
 -reset      #Deinitializes the journal
 -exit       #Exit the application
+```
 
-Hint: -write and -change commands are softlocked by default. To enable them, you need to first initialize the journal with the -init command.
+**Tip:** -write and -change commands are softlocked by default. To enable them, you need to first initialize the journal with the -init command.
