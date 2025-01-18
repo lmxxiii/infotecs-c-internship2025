@@ -8,6 +8,15 @@
 
 namespace JournalLib {
 
+    std::string JournalManager::urgencyToString(Urgency urgency){
+        auto it = urgencyToStringMap.find(urgency);
+        if (it != urgencyToStringMap.end()){
+            return it->second;
+        } else {
+            return urgencyToStringMap.begin()->second;
+        }
+    }
+
     void JournalManager::init(const std::string& journalName, Urgency minUrgency){
         this->journalName = journalName;
         this->minUrgency = minUrgency;
@@ -45,14 +54,5 @@ namespace JournalLib {
 
     bool JournalManager::getState(){
         return this->journalName != "" ? true : false;
-    }
-
-    std::string urgencyToString(Urgency urgency){
-        auto it = urgencyToStringMap.find(urgency);
-        if (it != urgencyToStringMap.end()){
-            return it->second;
-        } else {
-            return urgencyToStringMap.begin()->second;
-        }
     }
 }

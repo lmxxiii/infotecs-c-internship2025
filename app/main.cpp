@@ -3,18 +3,18 @@
 #include <mutex>
 #include <queue>
 #include <condition_variable>
-#include "journallib.h"
+#include "../libs/journallib.h"
 
 std::queue<std::string> dataQueue; // queue to hold input data
 std::mutex mtx; // mutex for thread safety
 std::condition_variable cv; // condition variable for synchronization
-bool done = false; // flag to indicate when input is done
+bool done = false; // flag to indicate whether input is done
 
 // Handles input
 void inputData() {
     std::string input;
     while (true) {
-        std::cout << "Enter data (type 'exit' to quit): ";
+        std::cout << "Available commands (type 'exit' to quit): ";
         std::getline(std::cin, input);
 
         if (input == "exit") {
@@ -55,17 +55,17 @@ void writeData() {
     outFile.close();
 }
 
-//Convert string to urgency object
-Urgency stringToUrgency(const std::string data){
-    if (data == "") //urgency is undefined
-        return Urgency::Undefined;
+//Converts string to urgency object
+JournalLib::Urgency stringToUrgency(const std::string str){
+    if (str == "") //urgency is undefined
+        return JournalLib::Urgency::Undefined;
 
-    for (auto it = urgencyToStringMap.begin(), it != urgencyToStringMap.end(); ++it)
+    for (auto it = JournalLib::urgencyToStringMap.begin(); it != JournalLib::urgencyToStringMap.end(); ++it)
     {
-        if (it->second == data)
+        if (it->second == str)
             return it->first;
     }
-    return Urgency::Undefined; //couldn't find matching urgency status for the input data
+    return JournalLib::Urgency::Undefined; //couldn't find matching urgency status for the input data
 }
 
 int main() {
