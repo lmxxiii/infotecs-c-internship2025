@@ -1,6 +1,4 @@
-# Project Title
-
-Journal writer application.
+# Journal writer application
 
 ## Table of Contents
 
@@ -15,17 +13,20 @@ The application allowes the user to write messages with different urgency levels
 ##INSTALLATION
 
 1. Clone the repository:
-bash
+```bash
    git clone https://github.com/lmxxiii/infotecs-c-internship2025.git
+```
    
 2. Navigate into the project directory
-bash
+```bash
    git path-to-the-project
+```
    
 3. Build the project (if applicable)
-bash
+```bash
    mkdir build & cd build
    make
+```
 
 ##USAGE
 
