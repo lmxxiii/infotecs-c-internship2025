@@ -5,11 +5,11 @@
  *
  */
 
-#ifndef JOURNALLIB_H
-#define JOURNALLIB_H
+#ifndef LIBJOURNAL_H
+#define LIBJOURNAL_H
 
 #include <string>
-#include <unordered_map>
+#include <map>
 #include <chrono>
 #include <fstream>
 #include <filesystem>
@@ -23,7 +23,7 @@ namespace JournalLib {
         High
     };
 
-    const std::unordered_map<Urgency, std::string> urgencyToStringMap = {
+    const std::map<Urgency, std::string> urgencyToStringMap = {
         {Urgency::Undefined, "UNDEFINED"},
         {Urgency::Low, "LOW"},
         {Urgency::Medium, "MEDIUM"},

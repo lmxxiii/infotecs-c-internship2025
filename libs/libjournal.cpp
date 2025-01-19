@@ -1,9 +1,9 @@
 /*
- * This file contains implementations for "journallib.h" library functions
+ * This file contains implementations for "libjournal.h" library functions
  *
  */
 
-#include "journallib.h"
+#include "libjournal.h"
 
 
 namespace JournalLib {
@@ -15,6 +15,11 @@ namespace JournalLib {
         } else {
             return urgencyToStringMap.begin()->second;
         }
+    }
+
+    JournalManager::JournalManager(std::string journalName, Urgency minUrgency){
+        this->journalName = journalName;
+        this->minUrgency = minUrgency;
     }
 
     void JournalManager::init(const std::string& journalName, Urgency minUrgency){
@@ -32,7 +37,7 @@ namespace JournalLib {
         try{
             std::filesystem::path journalPath = currentPath.parent_path() / "journals" / (journalName+".txt");
             std::filesystem::create_directories(journalPath.parent_path()); //create necessary directory and/or file, if it doesn't already exist
-            std::ofstream journal(journalPath); //open journal for writing
+            std::ofstream journal(journalPath, std::ios::app); //open journal for writing
             if (!journal)
                 return false;
             journal << "Time: " << std::ctime(&t_c) << " Urgency: " << urgencyToString(urgency) << " Message: " << message << std::endl;
