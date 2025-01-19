@@ -24,7 +24,6 @@ The application allowes the user to write messages with different urgency levels
    
 3. Build the project and run application
 ```bash
-   mkdir build & cd build
    make #the library in the /libs folder
    make #application in the /app folder
    make run #while in /app directory
