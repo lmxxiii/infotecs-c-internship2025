@@ -28,7 +28,9 @@ namespace JournalLib {
     }
 
     bool JournalManager::write(const std::string& message, Urgency urgency){
-        if (urgency < minUrgency) // this message priority is too low, so don't write anything to the journal
+        if (urgency < minUrgency) // the message priority is too low, so don't write anything to the journal
+            return false;
+        if (message == "") //no message to write down
             return false;
 
         const auto now = std::chrono::system_clock::now();
@@ -40,12 +42,12 @@ namespace JournalLib {
             std::ofstream journal(journalPath, std::ios::app); //open journal for writing
             if (!journal)
                 return false;
-            journal << "Time: " << std::ctime(&t_c) << " Urgency: " << urgencyToString(urgency) << " Message: " << message << std::endl;
+            journal << "Time: " << std::put_time(std::localtime(&t_c), "%d-%m-%Y %H:%M:%S") << " Urgency: " << urgencyToString(urgency) << " Message: " << message << std::endl;
             journal.close();
         } catch (const std::exception& e){
             return false;
         }
-        return true;
+        return true; // successful, if true. An error occured, if false
     }
 
     void JournalManager::changeUrgency(Urgency newUrgency){
